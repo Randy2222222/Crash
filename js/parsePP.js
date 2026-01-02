@@ -512,16 +512,16 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // Odds
       if (currentPPodds === null && ODDS_REGEX.test(trimmed)) {
         currentPPodds = trimmed;
-        continue;
+     //   continue;
       }
       // Winners Horse name and lengths in front of Place Horse
       if (currentPPwin.wn === null && WIN_REGEX.test(trimmed)) {
   currentPPwin.wn = trimmed;
-      
+       continue;
 }
       if (currentPPwin.lg === null && WIN_LG_REGEX.test(trimmed)) {
   currentPPwin.lg = trimmed;   
-        continue;
+      //  continue;
       }
       // Place Horse and lengths behind Winner
       if (currentPPplace.pl === null && PLACE_REGEX.test(trimmed)) {
@@ -530,7 +530,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPplace.lg === null && PLACE_LG_REGEX.test(trimmed)) {
   currentPPplace.lg = trimmed;   
-        continue;
+      //  continue;
       }
       // Show Horse Name and lengths behind Place Horse
       if (currentPPshow.sh === null && SHOW_REGEX.test(trimmed)) {
@@ -539,7 +539,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
-          continue;
+        //  continue;
       }
 
 
