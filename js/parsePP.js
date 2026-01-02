@@ -517,7 +517,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // Winners Horse name and lengths in front of Place Horse
       if (currentPPwin.wn === null && WIN_REGEX.test(trimmed)) {
   currentPPwin.wn = trimmed;
-        continue;
+      
 }
       if (currentPPwin.lg === null && WIN_LG_REGEX.test(trimmed)) {
   currentPPwin.lg = trimmed;   
