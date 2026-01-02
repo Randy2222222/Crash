@@ -171,6 +171,7 @@ export function parsePP(decodedText) {
     let currentPPraceNo = null;
     let currentPPglyph = null;
     let currentPPdistance = null;
+    let currentPPsurface = null;
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPraceType = null;
@@ -216,6 +217,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             race: currentPPraceNo,
             glyph: currentPPglyph,
             distance: currentPPdistance,
+            surface: currentPPsurface,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
             raceType: currentPPraceType,
@@ -247,6 +249,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
   currentPPraceNo = line.slice(10).trim(); // tiny race number (¹,²,³)
         currentPPglyph = null;
         currentPPdistance = null;
+        currentPPsurface = null;
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
@@ -328,28 +331,16 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
 
 
         // ⚡️ RUNNING SURFACE ⚡️
-// ---- SURFACE + SURFACE TAG ----
-//if (currentPPsurface.sf === null) {
+         let jSurface = nextNonBlank(lines, i + 1);
+let surfaceLine = lines[jSurface] || "";
 
- // const jSurface = nextNonBlank(lines, i + 1);
-//  const surfaceLine = (lines[jSurface] || "").trim();
-//  if (SURFACE_REGEX.test(surfaceLine)) {
-//  currentPPsurface= surfaceLine;
-
-    // SurfaceTag is the *physical* next line after surface
-//    const tagLine = (lines[jSurface + 1] || "").trim();
-
-//    if (currentPPsurface.tg === null && SURFACE_TAG_REGEX.test(tagLine)) {
-   //   currentPPsurface.tg = tagLine;
-    //  i = jSurface + 1; // consume surface + tag
-  //  } else {
-  //    currentPPsurface.tg = "";
-  //    i = jSurface; // consume surface only
- //   }
-
-  //  continue;
- // }
-//}
+if (SURFACE_REGEX.test(surfaceLine)) {
+  currentPPsurface = surfaceLine.trim();
+  i = jSurface; // consume surface
+} else {
+  currentPPsurface = "";
+  continue;
+}
        // ⚡️ END OF SURFACE CODE ⚡️
         // 🏄‍♀️ Surface Tag 🏄‍♀️
   
@@ -568,6 +559,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         race: currentPPraceNo,
         glyph: currentPPglyph,
         distance: currentPPdistance,
+        surface: currentPPsurface,
         leaderTimes: currentPPleaderTimes,
         rr: currentPPraceResult,
         raceType: currentPPraceType,
