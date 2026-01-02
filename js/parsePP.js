@@ -87,6 +87,8 @@ const PLACE_REGEX = /^[A-Za-z ]+$/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const SHOW_REGEX = /^[A-Za-z ]+$/;
 const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
+const COMMENT_REGEX = /.*/;
+const FIELD_REGEX = /^\d{1,2}$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -192,6 +194,8 @@ export function parsePP(decodedText) {
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
     let currentPPshow = { sh: null, lg: null };
+    let currentPPcomment = null;
+    let currentPPfield = null;
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -237,7 +241,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             odds: currentPPodds,
             win: currentPPwin,
             place: currentPPplace,
-            show: currentPPshow
+            show: currentPPshow,
+            comment: currentPPcomment,
+            field: currentPPfield
           });
         }
       
@@ -541,7 +547,16 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
         //  continue;
       }
-
+     // Comments 💬
+      if (currentPPcomment === null && COMMENT_REGEX.test(trimmed)) {
+        currentPPcomment = trimmed;
+        continue;
+      }
+      // 🏁 Field! How many horses 🏇 ran in Race! 🏁
+      if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
+        currentPPfield = trimmed:
+        continue;
+      }
 
       
       // 3️⃣ normal lines inside PP block
@@ -579,7 +594,9 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         odds: currentPPodds,
         win: currentPPwin,
         place: currentPPplace,
-        show: currentPPshow
+        show: currentPPshow,
+        comment: currentPPcomment,
+        field: currentPPfield
       });
     }
 
