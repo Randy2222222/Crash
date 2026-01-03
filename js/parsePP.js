@@ -281,6 +281,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
         currentPPshow = { sh: null, lg: null };
+        currentPPcomment = null;
+        currentPPfield = null;
       
         // start this PP block with the date line
         currentPP.push(line); 
