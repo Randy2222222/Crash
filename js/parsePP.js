@@ -87,7 +87,7 @@ const PLACE_REGEX = /^[A-Za-z ]+$/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const SHOW_REGEX = /^[A-Za-z ]+$/;
 const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const COMMENT_REGEX = /^.*$/;
+const COMMENT_REGEX = /^([A-Za-z '-,\d]+?)$/;
 const FIELD_REGEX = /^\d{1,2}$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
