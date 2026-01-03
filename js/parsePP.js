@@ -541,27 +541,25 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
       }
       // 💬 Comments about Race 💬
-    let currentPPcomment = ""; // standalone variable
-
-for (let i = 0; i < lines.length; i++) {
+    for (let i = 0; i < lines.length; i++) {
     const trimmed = lines[i].trim();
 
-    // Check if this line matches the SHOW/LG field (your anchor)
-    if (SHOW_LG_REGEX.test(trimmed)) {
-        // Walk backward to find the first non-empty line above
-        let j = i - 1;
-        while (j >= 0 && lines[j].trim() === "") {
-            j--;
+    // Detect field line (the "7" in your example)
+    if (FIELD_REGEX.test(trimmed)) {
+        // Look **forward** from the last processed line
+        // Capture the comment **the line just above the blank before the field**
+        if (i >= 2) { // ensure we don't go out of bounds
+            let j = i - 1;
+            // skip blank line
+            while (j >= 0 && lines[j].trim() === "") {
+                j--;
+            }
+            // assign comment for this record
+            currentPPcomment = lines[j].trim();
         }
 
-        // Assign the comment for this record
-        currentPPcomment = j >= 0 ? lines[j].trim() : "";
-
-        // Continue parsing other fields as usual
-        continue;
+        // continue parsing other fields...
     }
-
-    // ...your existing parsing code for other fields
 }
  //     const commentM = trimmed.match(/^.*$/);
       //      if (commentM) {
@@ -570,6 +568,7 @@ for (let i = 0; i < lines.length; i++) {
         // 🏁 How Many 🏇 Horses Raced 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
         currentPPfield = trimmed;
+        continue;
      }
 
       
