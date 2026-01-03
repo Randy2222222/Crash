@@ -541,25 +541,29 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
       }
       // 💬 Comments about Race 💬
-    for (let i = 0; i < lines.length; i++) {
-    const trimmed = lines[i].trim();
+  let currentPPcomment = "";
 
-    // Detect field line (the "7" in your example)
-    if (FIELD_REGEX.test(trimmed)) {
-        // Look **forward** from the last processed line
-        // Capture the comment **the line just above the blank before the field**
-        if (i >= 2) { // ensure we don't go out of bounds
-            let j = i - 1;
-            // skip blank line
-            while (j >= 0 && lines[j].trim() === "") {
-                j--;
-            }
-            // assign comment for this record
-            currentPPcomment = lines[j].trim();
-        }
+for (let i = 0; i < lines.length; i++) {
+  const trimmed = lines[i].trim();
 
-        // continue parsing other fields...
-    }
+  // FIELD line (the "7")
+  if (FIELD_REGEX.test(trimmed)) {
+
+    // comment is TWO lines above:
+    // [comment]
+    // [blank]
+    // [FIELD]
+    const commentLine = lines[i - 2];
+
+    currentPPcomment =
+      commentLine && commentLine.trim() !== ""
+        ? commentLine.trim()
+        : "";
+
+    continue;
+  }
+
+  // other parsing...
 }
  //     const commentM = trimmed.match(/^.*$/);
       //      if (commentM) {
