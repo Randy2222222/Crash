@@ -546,21 +546,22 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // Show Horse Name and lengths behind Place Horse
       if (currentPPshow.sh === null && SHOW_REGEX.test(trimmed)) {
   currentPPshow.sh = trimmed;
-       // continue;
+     //     continue;
 }
       if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
         //  continue;
       }
       // 💬 Comments about Race 💬
-      const commentM = trimmed.match(/^.*$/);
+      const commentM = trimmed.match(/^[a-z].*$/);
             if (commentM) {
                currentPPcomment = commentM[0];
-          //   continue;
+              continue;
           } 
         // 🏁 How Many 🏇 Horses Raced 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
         currentPPfield = trimmed;
+        continue;
       }
 
       
