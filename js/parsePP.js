@@ -551,16 +551,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         //  continue;
       }
       // 💬 Comments about Race 💬
-      const COMMENT_REGEX = /Comment:\s*(.*)/i;
-const match = lines[i].match(COMMENT_REGEX);
-
-// Standalone variable, separate from currentPP
-let currentPPcomment = match ? match[1].trim() : "";
-    //  const commentM = trimmed.match(/^.*$/);
-         //   if (commentM) {
-            //   currentPPcomment = commentM[0];
+     const commentM = trimmed.match(/^.*$/);
+            if (commentM) {
+               currentPPcomment = commentM[0];
           //   continue;
-         // } 
+          } 
         // 🏁 How Many 🏇 Horses Raced 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
         currentPPfield = trimmed;
