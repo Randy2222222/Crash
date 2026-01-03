@@ -541,38 +541,13 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
       }
       // 💬 Comments about Race 💬
-  let currentPPcomment = "";
-
-for (let i = 0; i < lines.length; i++) {
-  const trimmed = lines[i].trim();
-
-  // FIELD line (the "7")
-  if (FIELD_REGEX.test(trimmed)) {
-
-    // comment is TWO lines above:
-    // [comment]
-    // [blank]
-    // [FIELD]
-    const commentLine = lines[i - 2];
-
-    currentPPcomment =
-      commentLine && commentLine.trim() !== ""
-        ? commentLine.trim()
-        : "";
-
-    continue;
-  }
-
-  // other parsing...
-}
- //     const commentM = trimmed.match(/^.*$/);
-      //      if (commentM) {
-       //        currentPPcomment = commentM[0];
-        //  } 
+      const commentM = trimmed.match(/^.*$/);
+            if (commentM) {
+               currentPPcomment = commentM[0];
+          } 
         // 🏁 How Many 🏇 Horses Raced 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
         currentPPfield = trimmed;
-        continue;
      }
 
       
