@@ -87,8 +87,8 @@ const PLACE_REGEX = /^[A-Za-z ]+$/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const SHOW_REGEX = /^[A-Za- ]+$/;
 const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-const COMMENT_REGEX = /^.*$/;
-const FIELD_REGEX = /^\d{1,2}$/;
+//const COMMENT_REGEX = /^.*$/;
+//const FIELD_REGEX = /^\d{1,2}$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -194,8 +194,8 @@ export function parsePP(decodedText) {
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
     let currentPPshow = { sh: null, lg: null };
-    let currentPPcomment = null;
-    let currentPPfield = null;
+   // let currentPPcomment = null;
+   // let currentPPfield = null;
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -241,9 +241,9 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             odds: currentPPodds,
             win: currentPPwin,
             place: currentPPplace,
-            show: currentPPshow,
-            comment: currentPPcomment,
-            field: currentPPfield
+            show: currentPPshow
+        //    comment: currentPPcomment,
+        //   field: currentPPfield
           });
         }
       
@@ -281,8 +281,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
         currentPPshow = { sh: null, lg: null };
-        currentPPcomment = null;
-        currentPPfield = null;
+    //    currentPPcomment = null;
+    //    currentPPfield = null;
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -596,9 +596,9 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         odds: currentPPodds,
         win: currentPPwin,
         place: currentPPplace,
-        show: currentPPshow,
-        comment: currentPPcomment,
-        field: currentPPfield
+        show: currentPPshow
+    //    comment: currentPPcomment,
+    //    field: currentPPfield
       });
     }
 
