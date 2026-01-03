@@ -541,14 +541,30 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
       }
       // 💬 Comments about Race 💬
-      const commentM = trimmed.match(/^.*$/);
-            if (commentM) {
-               currentPPcomment = commentM[0];
-          } 
+      for (let i = 0; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
+
+    // Detect the last field before the date
+    if (FIELD_REGEX.test(trimmed)) {
+        // Walk backwards to find the first non-empty line (the comment)
+        let j = i - 1;
+        while (j >= 0 && lines[j].trim() === "") {
+            j--;
+        }
+        currentPPcomment = j >= 0 ? lines[j].trim() : "";
+        continue;
+    }
+
+    // ...parse other fields as usual
+}
+ //     const commentM = trimmed.match(/^.*$/);
+      //      if (commentM) {
+       //        currentPPcomment = commentM[0];
+        //  } 
         // 🏁 How Many 🏇 Horses Raced 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
         currentPPfield = trimmed;
-      }
+     }
 
       
       // 3️⃣ normal lines inside PP block
