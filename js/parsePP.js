@@ -550,15 +550,15 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         //  continue;
       }
      // Comments 💬
-      if (currentPPcomment === null && COMMENT_REGEX.test(trimmed)) {
-        currentPPcomment = trimmed;
-      //  continue;
-      }
-      // 🏁 Field! How many horses 🏇 ran in Race! 🏁
-      if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
-        currentPPfield = trimmed:
+     // if (currentPPcomment === null && COMMENT_REGEX.test(trimmed)) {
+     //   currentPPcomment = trimmed;
      //   continue;
-      }
+    //  }
+      // 🏁 Field! How many horses 🏇 ran in Race! 🏁
+    //  if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
+     //   currentPPfield = trimmed:
+     //   continue;
+     // }
 
       
       // 3️⃣ normal lines inside PP block
