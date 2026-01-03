@@ -554,7 +554,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       const commentM = trimmed.match(/^.*$/);
             if (commentM) {
                currentPPcomment = commentM[1];
-             continue;
+          //   continue;
           } 
         // 🏁 How Many 🏇 Horses Raced 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
