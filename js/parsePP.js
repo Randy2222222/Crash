@@ -399,9 +399,9 @@ if (SURFACE_REGEX.test(surfaceLine)) {
       }
 
       // RaceType — Description of Race and Name
-           const raceTypeM = trimmed.match(
-           /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
-         );
+           const raceTypeM = trimmed.match(/^.*$/);
+       //    /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
+        // );
             if (raceTypeM) {
                currentPPraceType = raceTypeM[0];
              continue;
