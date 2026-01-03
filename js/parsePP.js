@@ -550,12 +550,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
      // Comments 💬
       if (currentPPcomment === null && COMMENT_REGEX.test(trimmed)) {
         currentPPcomment = trimmed;
-        continue;
+      //  continue;
       }
       // 🏁 Field! How many horses 🏇 ran in Race! 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
         currentPPfield = trimmed:
-        continue;
+     //   continue;
       }
 
       
