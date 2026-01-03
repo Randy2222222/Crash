@@ -161,7 +161,8 @@ export function parsePP(decodedText) {
 
  // 🏇 Parse PP for each Horse
   for (const h of horses) {
-    const lines = h.block.split("\n").map(l => l.trim());
+    const lines = h.block.split("\n");
+ //   const lines = h.block.split("\n").map(l => l.trim());
 
     let currentPP = [];
     h.pp = [];
