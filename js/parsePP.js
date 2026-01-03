@@ -551,7 +551,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         //  continue;
       }
       // 💬 Comments about Race 💬
-     const commentM = trimmed.match(/^[A-Za-z ',-/d]+?$/);
+     const commentM = trimmed.match(/^.*$/);
             if (commentM) {
                currentPPcomment = commentM[0];
           //   continue;
