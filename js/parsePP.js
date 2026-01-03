@@ -336,7 +336,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
        else {
          currentPPglyph = "";
          currentPPdistance = "";
-         continue; 
+     //    continue; 
       
        }
 
@@ -350,7 +350,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
   i = jSurface; // consume surface
 } else {
   currentPPsurface = "";
-  continue;
+//  continue;
 }
        // ⚡️ END OF SURFACE CODE ⚡️
         // 🏄‍♀️ Surface Tag 🏄‍♀️
@@ -363,7 +363,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
       
          totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
          slotIndex = 0;
-       continue; // end of DATE block
+     //  continue; // end of DATE block
    }
       // -----------------------------
       // 2️⃣ Leader Times (calls)
@@ -404,7 +404,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
       //  RR — Race Rating MUST be 3 superscript digits
       if (currentPPraceResult === null && RR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPraceResult = trimmed;
-        continue;
+     //   continue;
       }
 
       // RaceType — Description of Race and Name
@@ -413,29 +413,29 @@ if (SURFACE_REGEX.test(surfaceLine)) {
          );
             if (raceTypeM) {
                currentPPraceType = raceTypeM[0];
-             continue;
+        //     continue;
           }     
       
       // CLASS RATING — Must Be 3 superscript digits,
        if (currentPPclassRating === null && CR_SUP_LINE_REGEX.test(trimmed)) {
         currentPPclassRating = trimmed;
-        continue;
+    //    continue;
      }
      
       // 🟦 PACE: E1, E2/, LP  ------------------------
       if (currentPPpace.e1 === null && E1_REGEX.test(trimmed)) {
         currentPPpace.e1 = trimmed;
-        continue;
+     //   continue;
       }
 
       if (currentPPpace.e2 === null && E2_REGEX.test(trimmed)) {
         currentPPpace.e2 = trimmed;
-        continue;
+     //   continue;
       }
 
       if (currentPPpace.lp === null && LP_REGEX.test(trimmed)) {
         currentPPpace.lp = trimmed;
-        continue;
+     //   continue;
       }
   
       // 🟥 Race Shapes: 1c and 2c (after LP) 
@@ -445,80 +445,80 @@ if (SURFACE_REGEX.test(surfaceLine)) {
       // First such line after LP = 1c
       if (currentPPoneC === null) {
         currentPPoneC = trimmed;
-        continue;
+     //   continue;
       }
 
       // Second such line after LP = 2c
       if (currentPPtwoC === null) {
         currentPPtwoC = trimmed;
-        continue;
+     //   continue;
       }
       // If both set, fall through and treat any later numbers as normal
     }
       // SPD — Bris Speed Rating (2 or 3 digit number)
 if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPspd = trimmed;
-  continue;
+//  continue;
 }
       // Post Position
       if (currentPPpp === null && POST_POSITION_REGEX.test(trimmed)) {
   currentPPpp = trimmed;
-  continue;
+//  continue;
 }
       // Starting Gate Position
        if (currentPPgate.gc === null && STARTING_GATE_REGEX.test(trimmed)) {
   currentPPgate.gc = trimmed;
-        continue;
+   //     continue;
 }
       if (currentPPgate.lg === null && STARTING_GATE_LG_REGEX.test(trimmed)) {
   currentPPgate.lg = trimmed;   
-        continue;
+     //   continue;
       }
       // First Call
       if (currentPPfirst.c1 === null && FIRST_CALL_REGEX.test(trimmed)) {
   currentPPfirst.c1 = trimmed;
-        continue;
+     //   continue;
 }
       if (currentPPfirst.lg === null && FIRST_LG_REGEX.test(trimmed)) {
   currentPPfirst.lg = trimmed;
-        continue;
+     //   continue;
       }
       // Second Call
       if (currentPPsecond.c2 === null && SECOND_CALL_REGEX.test(trimmed)) {
   currentPPsecond.c2 = trimmed;
-        continue;
+     //   continue;
 }
       if (currentPPsecond.lg === null && SECOND_LG_REGEX.test(trimmed)) {
  currentPPsecond.lg = trimmed;
-        continue;
+      //  continue;
       }
       // Straight Call
       if (currentPPstraight.str === null && STRAIGHT_CALL_REGEX.test(trimmed)) {
      currentPPstraight.str = trimmed;
-        continue;
+      //  continue;
 }
       if (currentPPstraight.lg === null && STRAIGHT_LG_REGEX.test(trimmed)) {
         currentPPstraight.lg = trimmed;
-        continue;
+     //   continue;
       }
       // FINISH
       if (currentPPfinish.fin === null && FINISH_REGEX.test(trimmed)) {
   currentPPfinish.fin = trimmed;
-        continue;
+     //   continue;
 }
       if (currentPPfinish.lg === null && FINISH_LG_REGEX.test(trimmed)) {
         currentPPfinish.lg = trimmed;
-        continue;
+     //   continue;
       }
       // 🏇Jockey and Weight
       if (currentPPjockey === null && JOCKEY_REGEX.test(trimmed)) {
         currentPPjockey = trimmed;
-        continue;
+      //  continue;
       }
       // Equipment
       if (currentPPequipment === null && EQUIPMENT_REGEX.test(trimmed)) {
         currentPPequipment = trimmed;
-        continue;
+       // continue;
       }
       // Odds
       if (currentPPodds === null && ODDS_REGEX.test(trimmed)) {
@@ -528,7 +528,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // Winners Horse name and lengths in front of Place Horse
       if (currentPPwin.wn === null && WIN_REGEX.test(trimmed)) {
   currentPPwin.wn = trimmed;
-       continue;
+    //   continue;
 }
       if (currentPPwin.lg === null && WIN_LG_REGEX.test(trimmed)) {
   currentPPwin.lg = trimmed;   
@@ -537,7 +537,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // Place Horse and lengths behind Winner
       if (currentPPplace.pl === null && PLACE_REGEX.test(trimmed)) {
   currentPPplace.pl = trimmed;
-        continue;
+      //  continue;
 }
       if (currentPPplace.lg === null && PLACE_LG_REGEX.test(trimmed)) {
   currentPPplace.lg = trimmed;   
