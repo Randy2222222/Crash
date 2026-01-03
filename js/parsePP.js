@@ -194,6 +194,7 @@ export function parsePP(decodedText) {
     let currentPPwin = { wn: null, lg: null };
     let currentPPplace = { pl: null, lg: null };
     let currentPPshow = { sh: null, lg: null };
+    let currentPPcomment = null;
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -239,7 +240,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             odds: currentPPodds,
             win: currentPPwin,
             place: currentPPplace,
-            show: currentPPshow
+            show: currentPPshow,
+            comment: currentPPcomment
           });
         }
       
@@ -277,6 +279,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPwin = { wn: null, lg: null };
         currentPPplace = { pl: null, lg: null };
         currentPPshow = { sh: null, lg: null };
+        currentPPcomment = null;
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -543,6 +546,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
         //  continue;
       }
+      // 💬 Comments about Race 💬
+      const commentM = trimmed.match(/^.*$/);
+            if (commentM) {
+               currentPPcomment = commentM[0];
+             continue;
+          } 
 
 
       
@@ -581,7 +590,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         odds: currentPPodds,
         win: currentPPwin,
         place: currentPPplace,
-        show: currentPPshow
+        show: currentPPshow,
+        comment: currentPPcomment
       });
     }
 
