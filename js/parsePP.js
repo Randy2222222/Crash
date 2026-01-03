@@ -89,6 +89,7 @@ const PLACE_REGEX = /^[A-Za-z ]+$/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const SHOW_REGEX = /^[A-Za-z ]+$/;
 const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
+const FIELD_REGEX = /^\d{1,2}$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
   s: "ˢ",
@@ -195,6 +196,7 @@ export function parsePP(decodedText) {
     let currentPPplace = { pl: null, lg: null };
     let currentPPshow = { sh: null, lg: null };
     let currentPPcomment = null;
+    let currentPPfield = null;
     let totalCalls = 4;
     let slotIndex = 0;
 
@@ -241,7 +243,8 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             win: currentPPwin,
             place: currentPPplace,
             show: currentPPshow,
-            comment: currentPPcomment
+            comment: currentPPcomment,
+            field: currentPPfield
           });
         }
       
@@ -280,6 +283,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPplace = { pl: null, lg: null };
         currentPPshow = { sh: null, lg: null };
         currentPPcomment = null;
+        currentPPfield = null;
       
         // start this PP block with the date line
         currentPP.push(line); 
@@ -549,10 +553,13 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       // 💬 Comments about Race 💬
       const commentM = trimmed.match(/^.*$/);
             if (commentM) {
-               currentPPcomment = commentM[0];
+               currentPPcomment = commentM[1];
              continue;
           } 
-
+        // 🏁 How Many 🏇 Horses Raced 🏁
+      if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
+        currentPPfield = trimmed;
+      }
 
       
       // 3️⃣ normal lines inside PP block
@@ -591,7 +598,8 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         win: currentPPwin,
         place: currentPPplace,
         show: currentPPshow,
-        comment: currentPPcomment
+        comment: currentPPcomment,
+        field: currentPPfield
       });
     }
 
