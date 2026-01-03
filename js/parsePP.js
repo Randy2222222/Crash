@@ -541,21 +541,27 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
       }
       // 💬 Comments about Race 💬
-      for (let i = 0; i < lines.length; i++) {
+    let currentPPcomment = ""; // standalone variable
+
+for (let i = 0; i < lines.length; i++) {
     const trimmed = lines[i].trim();
 
-    // Detect the last field before the date
-    if (FIELD_REGEX.test(trimmed)) {
-        // Walk backwards to find the first non-empty line (the comment)
+    // Check if this line matches the SHOW/LG field (your anchor)
+    if (SHOW_LG_REGEX.test(trimmed)) {
+        // Walk backward to find the first non-empty line above
         let j = i - 1;
         while (j >= 0 && lines[j].trim() === "") {
             j--;
         }
+
+        // Assign the comment for this record
         currentPPcomment = j >= 0 ? lines[j].trim() : "";
+
+        // Continue parsing other fields as usual
         continue;
     }
 
-    // ...parse other fields as usual
+    // ...your existing parsing code for other fields
 }
  //     const commentM = trimmed.match(/^.*$/);
       //      if (commentM) {
