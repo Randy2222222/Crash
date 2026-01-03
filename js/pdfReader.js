@@ -118,7 +118,7 @@ if (DEV_MODE === "structured") {
       out += `      Odds: ${pp.odds}\n`
       out += ` Finishers: ${pp.win.wn}${pp.win.lg}${pp.place.pl}${pp.place.lg}${pp.show.sh}${pp.show.lg}\n`
       out += `  Comments: ${pp.comment}\n`
-     // out += `     Field: ${pp.field}\n`
+      out += `     Field: ${pp.field}\n`
     });
 
     out += "========================================\n\n";
