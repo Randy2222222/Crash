@@ -1,12 +1,6 @@
 // No 🪲 have field
 
 // Fixed Bugs 👍
-
-// bugs🪲
-
-// Parsed but bugs 🪲
-
-
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
@@ -336,7 +330,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
        else {
          currentPPglyph = "";
          currentPPdistance = "";
-   //      continue; 
       
        }
 
@@ -350,7 +343,6 @@ if (SURFACE_REGEX.test(surfaceLine)) {
   i = jSurface; // consume surface
 } else {
   currentPPsurface = "";
-//  continue;
 }
        // ⚡️ END OF SURFACE CODE ⚡️
         // 🏄‍♀️ Surface Tag 🏄‍♀️
@@ -409,7 +401,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 
       // RaceType — Description of Race and Name
            const raceTypeM = trimmed.match(
-          /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
+          /((Ⓕ|🅂?)Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
          );
             if (raceTypeM) {
                currentPPraceType = raceTypeM[0];
@@ -532,7 +524,6 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPwin.lg === null && WIN_LG_REGEX.test(trimmed)) {
   currentPPwin.lg = trimmed;   
-      //  continue;
       }
       // Place Horse and lengths behind Winner
       if (currentPPplace.pl === null && PLACE_REGEX.test(trimmed)) {
@@ -541,27 +532,22 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
 }
       if (currentPPplace.lg === null && PLACE_LG_REGEX.test(trimmed)) {
   currentPPplace.lg = trimmed;   
-      //  continue;
       }
       // Show Horse Name and lengths behind Place Horse
       if (currentPPshow.sh === null && SHOW_REGEX.test(trimmed)) {
   currentPPshow.sh = trimmed;
-     //     continue;
 }
       if (currentPPshow.lg === null && SHOW_LG_REGEX.test(trimmed)) {
   currentPPshow.lg = trimmed;   
-        //  continue;
       }
       // 💬 Comments about Race 💬
-      const commentM = trimmed.match(/^[a-z].*$/);
+      const commentM = trimmed.match(/^.*$/);
             if (commentM) {
                currentPPcomment = commentM[0];
-              continue;
           } 
         // 🏁 How Many 🏇 Horses Raced 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
         currentPPfield = trimmed;
-        continue;
       }
 
       
