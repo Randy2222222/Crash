@@ -113,7 +113,7 @@ if (DEV_MODE === "structured") {
       out += `   2ndCall: ${pp.second.c2}${pp.second.lg}\n`
       out += `   StrCall: ${pp.straight.str}${pp.straight.lg}\n`
       out += `    Finish: ${pp.finish.fin}${pp.finish.lg}\n`
-      out += `   Jockey#: ${pp.jockey}\n`
+      out += `    Jockey: ${pp.jockey}\n`
       out += ` Equipment: ${pp.equipment}\n`
       out += `      Odds: ${pp.odds}\n`
       out += ` Finishers: ${pp.win.wn}${pp.win.lg}${pp.place.pl}${pp.place.lg}${pp.show.sh}${pp.show.lg}\n`
