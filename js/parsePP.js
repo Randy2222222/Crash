@@ -1,5 +1,3 @@
-// No 🪲 have field
-
 // Fixed Bugs 👍
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
@@ -161,8 +159,8 @@ export function parsePP(decodedText) {
 
  // 🏇 Parse PP for each Horse
   for (const h of horses) {
-    const lines = h.block.split("\n");
- //   const lines = h.block.split("\n").map(l => l.trim());
+  //  const lines = h.block.split("\n");
+    const lines = h.block.split("\n").map(l => l.trim());
 
     let currentPP = [];
     h.pp = [];
