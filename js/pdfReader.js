@@ -76,7 +76,7 @@ if (DEV_MODE === "structured") {
   let out = "=========== PARSED STRUCTURE ===========\n\n";
 
   for (const h of parsed.horses) {
-    out += `HORSE ${h.post || "?"} — ${h.name || "UNKNOWN"}\n`;
+    out += `POST# ${h.post || "?"} — ${h.name || "UNKNOWN"}\n`;
 
     h.pp.forEach((pp) => {
      // out += `   Date: ${pp.date} ${pp.track} ${pp.race}\n`;
