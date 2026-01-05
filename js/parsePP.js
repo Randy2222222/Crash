@@ -549,17 +549,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         //  continue;
       }
       // 💬 Comments about Race 💬
-      const commentM = trimmed.match(/([a-z]+\s[a-z]+[a-z]+|[A-Z][a-z]+|\d[A-Za-z]|[,;’+\-_])/g);
-
-if (commentM && currentPPcomment === null) {
-  currentPPcomment = commentM.join(" ").replace(/\s+/g, " ").trim();
-  continue;
-}
-    //    const commentM = trimmed.match(/([a-z]+\s[a-z]+[a-z]+|[A-Z][a-z]+|\d[A-Za-z]|,\;\’\+\-\_)/g);
-    //        if (commentM) {
-     //          currentPPcomment = commentM[0];
-     //        continue;
-      //   } 
+      
+        const commentM = trimmed.match(/([a-z]+\s[a-z]+[a-z]+|[A-Z][a-z]+|\d[A-Za-z]|,\;\’\+\-\_)/g);
+            if (commentM) {
+               currentPPcomment = commentM[0];
+             continue;
+         } 
         // 🏁 How Many 🏇 Horses Raced 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
         currentPPfield = trimmed;
