@@ -547,12 +547,10 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         //  continue;
       }
       // 💬 Comments about Race 💬
-      if (currentPPcomment === null && COMMENT_REGEX.test(trimmed)) {
-        currentPPcomment = trimmed;
-     //   const commentM = trimmed.match(/^.+$/);
-       //     if (commentM) {
-           //    currentPPcomment = commentM[0];
-        //     continue;
+        const commentM = trimmed.match(/^.*$/);
+            if (commentM) {
+               currentPPcomment = commentM[0];
+             continue;
          } 
         // 🏁 How Many 🏇 Horses Raced 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
