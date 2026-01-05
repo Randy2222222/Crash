@@ -336,7 +336,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
        else {
          currentPPglyph = "";
          currentPPdistance = "";
-         continue; 
+     //    continue; 
       
        }
 
@@ -350,7 +350,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
   i = jSurface; // consume surface
 } else {
   currentPPsurface = "";
-  continue;
+//  continue;
 }
        // ⚡️ END OF SURFACE CODE ⚡️
         // 🏄‍♀️ Surface Tag 🏄‍♀️
@@ -553,11 +553,11 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         //  continue;
       }
       // 💬 Comments about Race 💬
-      const commentM = trimmed.match(/^.*$/);
-            if (commentM) {
-               currentPPcomment = commentM[0];
+   //   const commentM = trimmed.match(/^.*$/);
+         //   if (commentM) {
+          //     currentPPcomment = commentM[0];
           //   continue;
-          } 
+        //  } 
         // 🏁 How Many 🏇 Horses Raced 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
         currentPPfield = trimmed;
