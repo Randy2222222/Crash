@@ -85,6 +85,7 @@ const PLACE_REGEX = /^[A-Za-z ]+$/;
 const PLACE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const SHOW_REGEX = /^[A-Za-z ]+$/;
 const SHOW_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
+const COMMENT_REGEX = /^.+$/; 
 const FIELD_REGEX = /^\d{1,2}$/;
 // Change SurfTag to Superscript
 const SUP_TAG = {
@@ -546,10 +547,12 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         //  continue;
       }
       // 💬 Comments about Race 💬
-        const commentM = trimmed.match(/^.+$/);
-            if (commentM) {
-               currentPPcomment = commentM[0];
-             continue;
+      if (currentPPcomment === null && COMMENT_REGEX.test(trimmed)) {
+        currentPPcomment = trimmed;
+     //   const commentM = trimmed.match(/^.+$/);
+       //     if (commentM) {
+           //    currentPPcomment = commentM[0];
+        //     continue;
          } 
         // 🏁 How Many 🏇 Horses Raced 🏁
       if (currentPPfield === null && FIELD_REGEX.test(trimmed)) {
