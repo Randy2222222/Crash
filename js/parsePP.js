@@ -553,7 +553,6 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         const commentM = trimmed.match(/([a-z]+\s[a-z]+[a-z]+|[A-Z][a-z]+|\d[A-Za-z]|,\;\’\+\-\_)/g);
             if (commentM) {
               currentPPcomment = commentM.join(" ").replace(/\s+/g, " ").trim();
-          //     currentPPcomment = commentM[0];
              continue;
          } 
         // 🏁 How Many 🏇 Horses Raced 🏁
