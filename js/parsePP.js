@@ -1,12 +1,6 @@
 // No 🪲 have field
 
 // Fixed Bugs 👍
-
-// bugs🪲
-
-// Parsed but bugs 🪲
-
-
 // parsePP.js
 // Phase 1 DEV parser — organizes decoded text into clean PP blocks
 
@@ -552,7 +546,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         //  continue;
       }
       // 💬 Comments about Race 💬
-       const commentM = trimmed.match(/^.*$/);
+       const commentM = trimmed.match(/^[A-Za-z ]+\d\'\,\;\$/g);
             if (commentM) {
                currentPPcomment = commentM[0];
              continue;
