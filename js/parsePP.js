@@ -334,11 +334,11 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 }
        // ⚡️ END OF SURFACE CODE ⚡️
         // 🏄‍♀️ Surface Tag 🏄‍♀️
-  const surfaceTagM = trimmed.match(/^|s|n|t|x|y|$/);
-            if (surfaceTagM) {
-              currentPPsurfaceTag = surfaceTagM[0];
-             continue;
-            }
+//  const surfaceTagM = trimmed.match(/^|s|n|t|x|y|$/);
+       //     if (surfaceTagM) {
+        //      currentPPsurfaceTag = surfaceTagM[0];
+        //     continue;
+         //   }
        // 🏄‍♀️ Surface Tag End 🏄‍♀️
 // ---------------------------
 // CALL COUNT (3 for sprints)
@@ -397,8 +397,8 @@ if (SURFACE_REGEX.test(surfaceLine)) {
   //    /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
 //   );
             if (raceTypeM) {
-         //     currentPPraceType = raceTypeM.join(" ").replace(/\s+/g, " ").trim();
-                currentPPraceType = raceTypeM[0];
+               currentPPraceType = raceTypeM.join(" ").replace(/\s+/g, " ").trim();
+            //    currentPPraceType = raceTypeM[0];
              continue;
           }     
       
