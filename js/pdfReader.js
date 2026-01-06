@@ -1,10 +1,3 @@
-// pdfReader! 🪲 Free
-
-// pdfReader
-
-// pdfReader with Calls
-
-
 // pdfReader.js
 // Clean, simple PDF loader with DEV MODE output
 import { parsePP } from "./parsePP.js";
@@ -79,15 +72,12 @@ if (DEV_MODE === "structured") {
     out +=  `POST# ${h.post || "?"} — ${h.name || "UNKNOWN"}\n`;
 
     h.pp.forEach((pp) => {
-     // out += `   Date: ${pp.date} ${pp.track} ${pp.race}\n`;
+    
       out += `   ${pp.date}${pp.track}${pp.race}\n`;
     
-      //   out += `    Date: ${pp.date}\n`;
-    //  out += `    Track: ${pp.track}\n`;
-     // out += `    Race#: ${pp.race}\n`;
       out += `     Glyph: ${pp.glyph}\n`;
       out += `  Distance: ${pp.distance}\n`;
-      out += `   Surface: ${pp.surface}${pp.surfaceTag}\n`;
+      out += `   Surface: ${pp.surface}\n`;
 
       out += `    Leader Times:\n`;
       out += `        1c: ${pp.leaderTimes.leader1.raw || ""} ${pp.leaderTimes.leader1.sup || ""}\n`;
@@ -99,7 +89,6 @@ if (DEV_MODE === "structured") {
       out += `  RaceType: ${pp.raceType}\n`;
       out += `        CR: ${pp.cr}\n`;
 
-     // out += `      Pace:\n`;
       out += `        E1: ${pp.pace.e1}\n`;
       out += `        E2: ${pp.pace.e2}\n`;
       out += `        LP: ${pp.pace.lp}\n`;
