@@ -334,7 +334,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 }
         
            // 🏄‍♀️ Surface Tag 🏄‍♀️
-const surfaceTagM = trimmed.match(/ˢ|ˣ|ⁿ|ᵗ|ʸ/);
+const surfaceTagM = trimmed.match(/(ˢ|ˣ|ⁿ|ᵗ|ʸ)/;);
             if (surfaceTagM) {
                currentPPsurfaceTag = surfaceTagM[0];
              continue;
