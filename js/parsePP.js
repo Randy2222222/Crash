@@ -154,7 +154,6 @@ export function parsePP(decodedText) {
     let currentPPglyph = null;
     let currentPPdistance = null;
     let currentPPsurface = null;
-    let currentPPsurfaceTag = null;
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPraceType = null;
@@ -203,7 +202,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             glyph: currentPPglyph,
             distance: currentPPdistance,
             surface: currentPPsurface,
-            surfaceTag: currentPPsurfaceTag,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
             raceType: currentPPraceType,
@@ -238,7 +236,6 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPglyph = null;
         currentPPdistance = null;
         currentPPsurface = null;
-        currentPPsurfaceTag = null;
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
@@ -332,19 +329,9 @@ if (SURFACE_REGEX.test(surfaceLine)) {
   currentPPsurface = "";
 //  continue;
 }
-       // ⚡️ END OF SURFACE CODE ⚡️
-        // 🏄‍♀️ Surface Tag 🏄‍♀️
-//  const surfaceTagM = trimmed.match(/^|s|n|t|x|y|$/);
-       //     if (surfaceTagM) {
-        //      currentPPsurfaceTag = surfaceTagM[0];
-        //     continue;
-         //   }
-       // 🏄‍♀️ Surface Tag End 🏄‍♀️
 // ---------------------------
 // CALL COUNT (3 for sprints)
-// ---------------------------
-        
-      
+// --------------------------- 
          totalCalls = isShortSprint(currentPPdistance) ? 3 : 4;
          slotIndex = 0;
        continue; // end of DATE block
@@ -393,12 +380,9 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 
       // RaceType — Description of Race and Name
     const raceTypeM = trimmed.match(
-   /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|[A-Za-z]+\s\d+k|[A-Z][a-z]+\-G\d|Mdn\s+\d+k|OC\d+k)/g);
-  //    /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
-//   );
+   /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|[A-Z][a-z]+|PuckerUp|QEIICup|DGOaks|[A-Za-z]+\s\d+k|[A-Z][a-z]+\-G\d|Mdn\s+\d+k|OC\d+k)/g);
             if (raceTypeM) {
                currentPPraceType = raceTypeM.join(" ").replace(/\s+/g, " ").trim();
-            //    currentPPraceType = raceTypeM[0];
              continue;
           }     
       
@@ -540,7 +524,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       }
       // 💬 Comments about Race 💬
       
-        const commentM = trimmed.match(/([a-z]+\s[a-z]+[a-z]+|[A-Z][a-z]+|\d[A-Za-z]|,'_|\;|\-)/g);
+        const commentM = trimmed.match(/([a-z]+\s[a-z]+[a-z]+|[A-Z][a-z]+|\d[A-Za-z]|\d|\,|\'|\_|\;|\-)/g);
             if (commentM) {
               currentPPcomment = commentM.join(" ").replace(/\s/g, " ").trim();
              continue;
@@ -567,7 +551,6 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         glyph: currentPPglyph,
         distance: currentPPdistance,
         surface: currentPPsurface,
-        surfaceTag: currentPPsurfaceTag,
         leaderTimes: currentPPleaderTimes,
         rr: currentPPraceResult,
         raceType: currentPPraceType,
