@@ -338,6 +338,7 @@ if (SURFACE_REGEX.test(surfaceLine)) {
             if (surfaceTagM) {
               currentPPsurfaceTag = surfaceTagM[0];
              continue;
+            }
        // 🏄‍♀️ Surface Tag End 🏄‍♀️
 // ---------------------------
 // CALL COUNT (3 for sprints)
