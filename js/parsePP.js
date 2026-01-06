@@ -154,6 +154,7 @@ export function parsePP(decodedText) {
     let currentPPglyph = null;
     let currentPPdistance = null;
     let currentPPsurface = null;
+    let currentPPsurfaceTag = null;
     let currentPPleaderTimes = null;
     let currentPPraceResult = null;
     let currentPPraceType = null;
@@ -202,6 +203,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
             glyph: currentPPglyph,
             distance: currentPPdistance,
             surface: currentPPsurface,
+            surfaceTag: currentPPsurfaceTag,
             leaderTimes: currentPPleaderTimes,
             rr: currentPPraceResult,
             raceType: currentPPraceType,
@@ -236,6 +238,7 @@ if (!currentPPdistance && DISTANCE_REGEX.test(line)) {
         currentPPglyph = null;
         currentPPdistance = null;
         currentPPsurface = null;
+        currentPPsurfaceTag = null;
         currentPPleaderTimes = {
           leader1:    { raw: null, sup: null },
           leader2:    { raw: null, sup: null },
@@ -563,6 +566,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
         glyph: currentPPglyph,
         distance: currentPPdistance,
         surface: currentPPsurface,
+        surfaceTag: currentPPsurfaceTag,
         leaderTimes: currentPPleaderTimes,
         rr: currentPPraceResult,
         raceType: currentPPraceType,
