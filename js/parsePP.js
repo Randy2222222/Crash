@@ -22,7 +22,6 @@ const HORSE_ANCHOR = /(?:^|\n)(\d{1,2})\s+([A-Za-z0-9'’.\/\- ]+?)\s+\(([A-Z\/]
 const DATE_REGEX = /^\d{2}[A-Za-z]{3}\d{2}/;
 
 // 3️⃣ Raw Brisnet surface glyphs → your chosen display symbols
-//const GLYPH_TAGS = ["à", "Ì", "š", "•", "æ"];
 const GLYPHS_TO_DISPLAY = ["Ⓣ","Ⓐ","ⓧ","🅃","�"]   
 
 // 4️⃣ Distance Patterns
@@ -30,7 +29,7 @@ const DISTANCE_REGEX = /([4-7](?:½)?f?|1m|2m|1m70|1(?:¹⁄₁₆|⅛|³⁄₁�
 
 // 5️⃣ Surface codes (2-letter)
 const SURFACE_REGEX = /^(ft|gd|my|sy|wf|fm|yl|sf|hy|sl)$/i;
-const SURFACE_TAG_REGEX = /(ˢ|ˣ|ⁿ|ᵗ|ʸ)/;
+//const SURFACE_TAG_REGEX = /(ˢ|ˣ|ⁿ|ᵗ|ʸ)/;
 
 //  6️⃣ Leader-time helper functions
 function isShortSprint(distanceStr) {
@@ -40,34 +39,17 @@ function isShortSprint(distanceStr) {
 // (we’re not using UNICODE_SIX here yet, but keeping it in case you
 // later want to auto-append a missing ⁶)
 const UNICODE_SIX = "\u2076";   // ⁶
-
-// 7️⃣ Line is ONLY 2–3 superscript digits → this IS the RR value
 const RR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
-
-// 8️⃣ RaceType
-//const RACETTYPE_REGEX = /^\d(Ⓕ|🅂|([A-Za-z]\/+))$/;
 const RACETYPE_REGEX = /(?:🅂,Ⓕ)([A-Za-z]{2,})(\d{1,3}[kK]?)?(\/[n\dLx\-]+)?(?:-([A-Za-z\d]+))?(?:\s+([A-Za-z]+\d+[kK]?))/;
-
-// 9️⃣ Class Rating
 const CR_SUP_LINE_REGEX = /^[⁰¹²³⁴⁵⁶⁷⁸⁹]{2,3}$/;
-
-// 8️⃣ Brisnet speed figures
-const E1_REGEX = /^\d{2,3}$/;      // ex: 76
-const E2_REGEX = /^\d{2,3}\/$/;    // ex: 82/
-const LP_REGEX = /^\d{2,3}$/;      // ex: 86  🔥was LP
-
-// 9️⃣ Race Shapes (1c and 2c): +3, -1, 4, etc.
+const E1_REGEX = /^\d{2,3}$/;      
+const E2_REGEX = /^\d{2,3}\/$/;    
+const LP_REGEX = /^\d{2,3}$/;     
 const SHAPE_REGEX = /^[+-]?\d{1,3}$/;
-
-// 🔟 SPD Speed Rating
-const SPD_REGEX = /^\d{2,3}$/;   // matches 84 or 104
+const SPD_REGEX = /^\d{2,3}$/;   
 const POST_POSITION_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_REGEX = /^\d{1,2}$/;
 const STARTING_GATE_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
-//const FIRST_LG_REGEX = /[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}/;
-//const FIRST_LG_REGEX = /((?:¼|½|¾|)(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})(?:¼|½|¾|))/;
-
-//const STARTING_GATE_LENGTHS_REGEX = /[\s\u00A0]*[⁰¹²³⁴⁵⁶⁷⁸⁹](?:¼|½|¾)?/;
 const FIRST_CALL_REGEX = /^\d{1,2}$/;
 const FIRST_LG_REGEX = /^(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2}(?:¼|½|¾|)?|ⁿˢ|ʰᵈ|ⁿᵏ|¼|½|¾)$/;
 const SECOND_CALL_REGEX = /^\d{1,2}$/;
@@ -349,7 +331,10 @@ if (SURFACE_REGEX.test(surfaceLine)) {
 }
        // ⚡️ END OF SURFACE CODE ⚡️
         // 🏄‍♀️ Surface Tag 🏄‍♀️
-  
+  const surfaceTagM = trimmed.match(/^|s|n|t|x|y|$/);
+            if (surfaceTagM) {
+              currentPPsurfaceTag = surfaceTagM[0];
+             continue;
        // 🏄‍♀️ Surface Tag End 🏄‍♀️
 // ---------------------------
 // CALL COUNT (3 for sprints)
@@ -551,7 +536,7 @@ if (currentPPspd === null && SPD_REGEX.test(trimmed)) {
       }
       // 💬 Comments about Race 💬
       
-        const commentM = trimmed.match(/([a-z]+\s[a-z]+[a-z]+|[A-Z][a-z]+|\d[A-Za-z]|,\;\’\+\-\_)/g);
+        const commentM = trimmed.match(/([a-z]+\s[a-z]+[a-z]+|[A-Z][a-z]+|\d[A-Za-z]|,|\;|'|\-|_)/g);
             if (commentM) {
               currentPPcomment = commentM.join(" ").replace(/\s+/g, " ").trim();
              continue;
