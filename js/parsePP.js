@@ -408,7 +408,8 @@ if (SURFACE_REGEX.test(surfaceLine)) {
   //    /(Ⓕ|🅂|Alw\d+|A\d+k|G\d|Regret|PuckerUp|QEIICup|DGOaks|PENOaksB|SarOkInv|MsGrillo|Mdn\s+\d+k|OC\d+k)/g
 //   );
             if (raceTypeM) {
-               currentPPraceType = raceTypeM[0];
+              currentPPraceType = raceTypeM.join(" ").replace(/\s+/g, " ").trim();
+            //   currentPPraceType = raceTypeM[0];
              continue;
           }     
       
